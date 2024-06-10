@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 import { usePathname, useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
-export default function NextuiProvider({ children }) {
+export default function NextuiProviderWrapper({ children }) {
   const pathname = usePathname();
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
