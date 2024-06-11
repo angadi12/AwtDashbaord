@@ -99,7 +99,7 @@ const Addblogs = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/api/awt/blogs/create",
+        "https://awt-backend.onrender.com/api/awt/blogs/create",
         {
           method: "POST",
           headers: {

@@ -115,7 +115,7 @@ function Addjobs() {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/api/awt/jobs/Create",
+        "https://awt-backend.onrender.com/api/awt/jobs/Create",
         {
           method: "POST",
           headers: {

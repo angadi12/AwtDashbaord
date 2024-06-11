@@ -20,7 +20,7 @@ export default function UpdateJobs() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/awt/jobs/Get');
+        const response = await fetch('https://awt-backend.onrender.com/api/awt/jobs/Get');
         if (!response.ok) {
           throw new Error('Failed to fetch jobs');
         }
@@ -45,7 +45,7 @@ export default function UpdateJobs() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/awt/jobs/Delete/${id}`, {
+      const response = await fetch(`https://awt-backend.onrender.com/api/awt/jobs/Delete/${id}`, {
         method: 'DELETE',
       });
 

@@ -11,7 +11,7 @@ const Viewblogs = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/awt/blogs/Get');
+        const response = await fetch('https://awt-backend.onrender.com/api/awt/blogs/Get');
         if (!response.ok) {
           throw new Error('Failed to fetch blogs');
         }
@@ -33,7 +33,7 @@ const Viewblogs = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/awt/blogs/Delete/${id}`, {
+      const response = await fetch(`https://awt-backend.onrender.com/api/awt/blogs/Delete/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

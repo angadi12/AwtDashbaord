@@ -36,7 +36,7 @@ export default function Page() {
     try {
       setLoginLoading(true);
       const response = await axios.post(
-        "http://localhost:8000/api/awt/user/Adminlogin",
+        "https://awt-backend.onrender.com/api/awt/user/Adminlogin",
         loginFormData
       );
       console.log("Login Successful", response.data);
