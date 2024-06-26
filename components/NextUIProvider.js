@@ -46,7 +46,7 @@ export default function NextuiProviderWrapper({ children }) {
           </div>
         )}
         <div className="flex flex-col w-full bg-white">
-          <Navbar />
+        {pathname !== '/Signin' && (<Navbar />)}
           {children}
         </div>
       </main>

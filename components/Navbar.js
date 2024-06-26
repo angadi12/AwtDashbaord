@@ -150,7 +150,7 @@ const Navbar = () => {
                           )}
                           <div className="flex flex-col items-start text-xs text-black">
                             <div className="text-xs">
-                              {form.firstName} {form.lastName}
+                              {form.firstName}
                             </div>
                             {form.subject}
                           </div>
