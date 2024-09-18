@@ -125,7 +125,7 @@ const Navbar = () => {
           <SheetContent>
             <SheetHeader>
               <SheetTitle>Messages</SheetTitle>
-              <SheetDescription>
+              <SheetDescription className="overflow-scroll">
                 {loading ? (
                   <div>Loading...</div>
                 ) : error ? (
@@ -140,7 +140,7 @@ const Navbar = () => {
                     >
                       <div
                         onClick={() => fetchContactFormDetails(form._id)}
-                        className="flex justify-between items-center h-14 w-full"
+                        className="flex justify-between items-center h-14 w-full "
                       >
                         <div className="flex items-center gap-2">
                           {form.status === "read" ? (
@@ -169,6 +169,7 @@ const Navbar = () => {
       <Modal
         backdrop="opaque"
         isDismissable={false}
+        size="full"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         motionProps={{

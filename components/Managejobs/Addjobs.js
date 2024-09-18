@@ -18,7 +18,7 @@ function Addjobs() {
   const [jobTitle, setJobTitle] = useState("");
   const [description, setDescription] = useState("");
   const [openings, setOpenings] = useState("");
-  const [packageSelected, setPackageSelected] = useState(new Set([]));
+  const [packageSelected, setPackageSelected] = useState();
   const [jobType, setJobType] = useState(new Set([]));
   const [jobMode, setJobMode] = useState(new Set([]));
   const [keyRoles, setKeyRoles] = useState("");
@@ -67,7 +67,7 @@ function Addjobs() {
     if (!description) newErrors.description = "Description is required";
     if (!openings || isNaN(openings))
       newErrors.openings = "Openings must be a valid number";
-    if (packageSelected.size === 0)
+    if (!packageSelected)
       newErrors.packageSelected = "Package is required";
     if (jobType.size === 0) newErrors.jobType = "Job type is required";
     if (jobMode.size === 0) newErrors.jobMode = "Job mode is required";
@@ -99,7 +99,7 @@ function Addjobs() {
       title: jobTitle,
       description: description,
       openings: parseInt(openings, 10),
-      package: parseInt(Array.from(packageSelected).join("")),
+      package:packageSelected,
       jobType: Array.from(jobType).join(", "),
       jobMode: Array.from(jobMode).join(", "),
       keyRoles: keyRoles.split("\n"),
@@ -192,7 +192,18 @@ function Addjobs() {
             onChange={(e) => setOpenings(e.target.value)}
            
           />
-          <Select
+          <Input
+            radius="sm"
+            type="number"
+            label="Package"
+            placeholder="Package"
+            labelPlacement="outside"
+            variant="bordered"
+            value={packageSelected}
+            onChange={(e) => setPackageSelected(e.target.value)}
+           
+          />
+          {/* <Select
             radius="sm"
             items={packages}
             variant="bordered"
@@ -206,7 +217,7 @@ function Addjobs() {
             className=""
           >
             {(item) => <SelectItem key={item.value}>{item.label}</SelectItem>}
-          </Select>
+          </Select> */}
         </div>
         <div className="flex w-full items-center flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
           <Select
@@ -282,8 +293,8 @@ function Addjobs() {
           <Textarea
             maxRows={4}
             radius="sm"
-            label="Preferred Qualifications"
-            placeholder="Enter preferred qualifications"
+            label="Add Skills"
+            placeholder="Enter Skills"
             labelPlacement="outside"
             variant="bordered"
             value={preferredQualifications}
