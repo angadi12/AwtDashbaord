@@ -11,6 +11,7 @@ import { BiSolidPencil } from "react-icons/bi";
 import { IoMdPeople } from "react-icons/io";
 import Viewjobs from "./Managejobs/Viewjobs";
 import Updatejobs from "./Managejobs/Updatejobs";
+import Applicantdetails from "./Managejobs/Applicantdetails";
 
 export default function Tabslider() {
   return (
@@ -67,7 +68,7 @@ export default function Tabslider() {
             </div>
           }
         >
-          {/* <Addvilla /> */}
+         <Applicantdetails/>
         </Tab>
       </Tabs>
     </div>
