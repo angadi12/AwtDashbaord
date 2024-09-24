@@ -73,7 +73,7 @@ function Addjobs() {
     if (jobMode.size === 0) newErrors.jobMode = "Job mode is required";
     if (!keyRoles) newErrors.keyRoles = "Key roles are required";
     if (!responsibilities)
-      newErrors.responsibilities = "Responsibilities are required";
+      newErrors.responsibilities = "Requirements are required";
     if (!qualifications)
       newErrors.qualifications = "Qualifications are required";
     if (!preferredQualifications)
@@ -267,8 +267,8 @@ function Addjobs() {
           <Textarea
             radius="sm"
             maxRows={4}
-            label="Responsibilities"
-            placeholder="Enter responsibilities"
+            label="Requirement(optional)"
+            placeholder="Enter Requirement"
             labelPlacement="outside"
             variant="bordered"
             value={responsibilities}
