@@ -72,8 +72,6 @@ function Addjobs() {
     if (jobType.size === 0) newErrors.jobType = "Job type is required";
     if (jobMode.size === 0) newErrors.jobMode = "Job mode is required";
     if (!keyRoles) newErrors.keyRoles = "Key roles are required";
-    if (!responsibilities)
-      newErrors.responsibilities = "Requirements are required";
     if (!qualifications)
       newErrors.qualifications = "Qualifications are required";
     if (!preferredQualifications)
