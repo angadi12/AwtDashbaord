@@ -41,7 +41,10 @@ const Navbar = () => {
         return response.json();
       })
       .then((data) => {
-        setContactForms(data);
+        const sortedData = data.sort((a, b) => {
+          return a.status === "unread" ? -1 : b.status === "unread" ? 1 : 0;
+        });
+        setContactForms(sortedData);
         setLoading(false);
       })
       .catch((error) => {
@@ -49,8 +52,6 @@ const Navbar = () => {
         setLoading(false);
       });
   }, []);
-
- 
 
   const fetchContactFormDetails = (id) => {
     setLoadingDetails(true);
@@ -116,9 +117,15 @@ const Navbar = () => {
         <Sheet>
           <SheetTrigger>
             <div className="flex items-center gap-2 p-1">
-              <Badge content={unreadMessagesCount} shape="circle" color="danger">
-               
-                  <IoNotificationsCircleOutline size={30} className="text-lg text-indigo-950" />
+              <Badge
+                content={unreadMessagesCount}
+                shape="circle"
+                color="danger"
+              >
+                <IoNotificationsCircleOutline
+                  size={30}
+                  className="text-lg text-indigo-950"
+                />
               </Badge>
             </div>
           </SheetTrigger>
@@ -134,13 +141,13 @@ const Navbar = () => {
                   contactForms.map((form) => (
                     <SheetClose
                       key={form._id}
-                      className={`flex justify-between items-center h-14 w-full px-4 rounded-sm ${
+                      className={`flex justify-between items-center h-14 w-full px-4 m-1 rounded-sm ${
                         form.status === "read" ? "bg-white" : "bg-slate-200"
                       }`}
                     >
                       <div
                         onClick={() => fetchContactFormDetails(form._id)}
-                        className="flex justify-between items-center h-14 w-full "
+                        className="flex justify-between items-center   h-14 w-full "
                       >
                         <div className="flex items-center gap-2">
                           {form.status === "read" ? (
@@ -148,14 +155,18 @@ const Navbar = () => {
                           ) : (
                             <HiOutlineMail size={24} />
                           )}
-                          <div className="flex flex-col items-start text-xs text-black">
-                            <div className="text-xs">
-                              {form.firstName}
-                            </div>
-                            {form.subject}
+                          <div className="flex flex-col justify-center items-start text-xs text-black">
+                            <div className="text-tiny">{form.firstName}</div>
+                            <p className="text-tiny text-justify">
+                              {form.subject.length > 20
+                                ? `${form.subject.slice(0, 20)}...`
+                                : form.subject}
+                            </p>
                           </div>
                         </div>
-                        <div>{new Date(form.submittedAt).toLocaleString()}</div>
+                        <div className="text-tiny">
+                          {new Date(form.submittedAt).toLocaleString()}
+                        </div>
                       </div>
                     </SheetClose>
                   ))
