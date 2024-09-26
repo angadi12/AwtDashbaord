@@ -58,6 +58,7 @@ export default function UpdateJobs() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loading2, setLoading2] = useState(false);
+  const [loading3, setLoading3] = useState(false);
   const [error, setError] = useState(null);
   const [jobid, Setjobid] = useState();
   const [opendeletemodal, Setopendeletemodal] = useState(false);
@@ -193,6 +194,7 @@ export default function UpdateJobs() {
   }, [jobid]); // Ensur
 
   const handleDelete = async (id) => {
+    setLoading3(true)
     try {
       const response = await fetch(
         `https://awt-backend.onrender.com/api/awt/jobs/Delete/${id}`,
@@ -208,16 +210,20 @@ export default function UpdateJobs() {
       const result = await response.json();
       if (result.success) {
         setJobs((prevJobs) => prevJobs.filter((job) => job._id !== id));
-        toast.success("Job deleted successfully");
         setTimeout(() => {
           Setopendeletemodal(false);
           Setjobid("");
+          setLoading3(false)
         }, 1000);
       } else {
         throw new Error(result.error || "Failed to delete job");
+        setLoading3(false)
+
       }
     } catch (error) {
       toast.error(error.message);
+      setLoading3(false)
+
     }
   };
 
@@ -388,6 +394,7 @@ export default function UpdateJobs() {
                   Close
                 </Button>
                 <Button
+                isLoading={loading3}
                   onPress={() => handleDelete(jobid)}
                   className="bg-[#FF7143] text-white text-center rounded-md p-1 w-32"
                 >
