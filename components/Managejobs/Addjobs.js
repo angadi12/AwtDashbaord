@@ -192,7 +192,7 @@ function Addjobs() {
           />
           <Input
             radius="sm"
-            type="number"
+            type="text"
             label="Package"
             placeholder="Package"
             labelPlacement="outside"
